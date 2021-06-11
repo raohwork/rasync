@@ -1,11 +1,18 @@
 some helpers to write common routines
 
-
 [![GoDoc](https://godoc.org/github.com/raohwork/routines?status.svg)](https://godoc.org/github.com/raohwork/routines)
 [![Go Report Card](https://goreportcard.com/badge/github.com/raohwork/routines)](https://goreportcard.com/report/github.com/raohwork/routines)
 <a href='https://github.com/jpoles1/gopherbadger' target='_blank'>![gopherbadger-tag-do-not-edit](https://img.shields.io/badge/Go%20Coverage-96%25-brightgreen.svg?longCache=true&style=flat)</a>
 
-### simple ws client
+Helpers here can:
+
+- Prevent your crawler from getting banned (`RunAtleast(duration, task)`)
+- Running task repeatly in background (`InfiniteLoop(task)`)
+- Retry task until first successful attempt (`Retry(task)`)
+
+and more.
+
+### simple ws client as example
 
 with gorilla/websocket
 
