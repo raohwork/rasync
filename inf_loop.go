@@ -35,7 +35,7 @@ type InfiniteLoopControl struct {
 //   defer ctrl.Cancel()
 //
 //   if err := <- ctrl.Err; err != nil {
-//       log.Print("an error occured: ", err)
+//       log.Print("an error occurred: ", err)
 //   }
 //
 //   // gracefully shutdown: waits all tasks to stop
