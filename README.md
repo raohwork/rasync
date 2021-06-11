@@ -2,7 +2,7 @@ some helpers to write common routines
 
 
 [![GoDoc](https://godoc.org/github.com/raohwork/routines?status.svg)](https://godoc.org/github.com/raohwork/routines)
-
+[![Go Report Card](https://goreportcard.com/badge/github.com/raohwork/routines)](https://goreportcard.com/report/github.com/raohwork/routines)
 ### simple ws client
 
 with gorilla/websocket
