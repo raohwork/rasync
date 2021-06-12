@@ -33,6 +33,22 @@ func TestTilErr(t *testing.T) {
 	}
 }
 
+func TestTilErrAllDone(t *testing.T) {
+	cnt := 0
+	fgood := func() error {
+		cnt++
+		return nil
+	}
+
+	err := TilErr(fgood, fgood, fgood)
+	if err != nil {
+		t.Fatal("unexpected error: ", err)
+	}
+	if cnt != 3 {
+		t.Errorf("expect fgood ran 3 times, got %d", cnt)
+	}
+}
+
 func TestTilErrAsync(t *testing.T) {
 	myErr := errors.New("error")
 	cnt := []int{0, 0}
