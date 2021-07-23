@@ -4,6 +4,8 @@
 
 package routines
 
+import "sync/atomic"
+
 // Recorded creates a function that remembers how many times it is called
 //
 // for example:
@@ -13,11 +15,12 @@ package routines
 //    x() // equals f(1)
 //    x() // equals f(2)
 func Recorded(f func(idx uint64) error) (ret func() error) {
-	tries := uint64(0)
+	x := uint64(0)
+	tries := &x
 
 	return func() (err error) {
-		err = f(tries)
-		tries++
+		err = f(atomic.LoadUint64(tries))
+		atomic.AddUint64(tries, 1)
 		return
 	}
 }
