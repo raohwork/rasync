@@ -12,6 +12,19 @@ Helpers here can:
 
 and more.
 
+# Race conditions
+
+Values returned in this library are thread-safe. However, thread-safety of external
+function is not covered.
+
+Considering this example:
+
+```go
+f := Recorded(yourFunc)
+```
+
+`f` is thread-safe iff `yourFunc` is thread-safe.
+
 ### simple ws client as example
 
 with gorilla/websocket
