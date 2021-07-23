@@ -90,3 +90,34 @@ func TestTriesAtMostDone(t *testing.T) {
 		t.Fatalf("expected to failed 3 times, got %d", cnt)
 	}
 }
+
+func TestTryAtMostFailed(t *testing.T) {
+	theErr := errors.New("the error")
+	f := func(i uint64) error {
+		if i >= 3 {
+			return nil
+		}
+		return theErr
+	}
+	err := TryAtMost(3, Recorded(f))
+	if err == nil {
+		t.Fatal("expected error, got nothing")
+	}
+	if err != theErr {
+		t.Fatal("unexpected error: ", err)
+	}
+}
+
+func TestTryAtMostDone(t *testing.T) {
+	theErr := errors.New("the error")
+	f := func(i uint64) error {
+		if i >= 3 {
+			return nil
+		}
+		return theErr
+	}
+	err := TryAtMost(5, Recorded(f))
+	if err != nil {
+		t.Fatal("unexpected error: ", err)
+	}
+}

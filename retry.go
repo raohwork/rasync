@@ -69,6 +69,20 @@ func TriesAtMost(n uint64, f func() error) (err chan error) {
 	}))
 }
 
+// TryAtMost wraps TriesAtMost, returns last error iff all attempts failed.
+func TryAtMost(n uint64, f func() error) (err error) {
+	ch := TriesAtMost(n, f)
+	cnt := uint64(0)
+	for err = range ch {
+		cnt++
+	}
+	if cnt < n {
+		err = nil
+	}
+
+	return
+}
+
 // IgnoreErr drops all errors in ch asynchronously
 //
 // If you need it synchronously, just use "for range ch {}".
